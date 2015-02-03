@@ -27,6 +27,9 @@
 								<h3> &nbsp Nav Menu </h3>
 								
 										<a href="index.php">Home</a><br>
+										<a href="question.php">Ask a question</a><br>
+										<a href="unresolved.php">Unresolved Questions</a><br>
+										<a href="resolved.php">Resolved Questions</a><br>
 										
 
 
@@ -53,109 +56,42 @@
 
 </form>
 
+
+<!-- user validation logic...soon-->
 <?php
 
-$answer = $_POST['ans'];
 
- if ($answer == "ans4") {
+
 
  
-
- echo " Yeah that dog is pretty sweet.";
-
- } else if
- ($answer == "ans1") {
-
- echo "No";
-
- } 
- else if
- ($answer == "ans3") {
-
- echo "So you would think.";
-
- } 
- else if
-  ($answer == "ans2") {
-
- echo "Watch out for those guys.";
-
- } 
  ?>
 
 </div>
  </div>
 <div class="rightc" >
 <div class="content2"  >
-
+<div ><center> <img class="img" src="questionMark.jpg" alt="?" ></div></center> 
 <center>
-<form  action="process-form-data.php" method="post" >
-
- <fieldset>
- <p style="text-align:left;">
-Title <select name="title">
-<option value="mr" >Mr.</option>
-<option value="mrs" >Mrs.</option>
-<option value="ms" />Ms.</option>
-</select> &nbsp  First: <input type="text" name="first" size="15" /> Last: <input type="text" name="last" size="15" /></p>
+<!--<form  action="process-form-data.php" method="post" >-->
+<h1><em>Hmmmmmmmmmm</em></h1>
  
-  <br />
-Email:<input name="email" type="text" size="30" />
-</fieldset>
-
-<fieldset >
-<p>This is...</p>
-<input type="radio" name="response" value="good" />good
-<input type="radio" name="response" value="great" />great
-<input type="radio" name="response" value="grand" />grand 
-<p>everyone on the bus</p>
-</fieldset>
-
-<fieldset>
-Comments
-<textarea name="comments" rows="3" cols="30" >Comment here</textarea>
-
-<input type="submit" name="submit" value="Submit me" />
-<input type="reset" value="Try Again" />
-
-</fieldset>
 
 
-</form>
 		</center>
 
 	<center><p>Text <a href="data.txt">data</a> from form</p></center>
 	
 <?php
-	
-	$test=array("This ","is ","an ","array ","that ","contains ","strings ");
-
-print "<h4> Here is an array that runs a loop and selects a random index to print</h4>";
+	   
  
-for ($x=0; $x<=10; $x++)
- {
-	$num = rand(0,6);
-	print "$test[$num]";
- 
- 
- }
- print "<p>\nAnd this is the array in order\n</p>";
- for ($x=0; $x<=10; $x++)
- {
-	 
-	print "$test[$x]";
-		 
- 
- }
-		
-		
+ Print "<i>Php works too</i>"; 
 		
 ?>	
 </div>
 </div>
 
 
-<div class="footer"> <h6>Copyright 2013 Justin Bennett</div>
+<div class="footer"> <h6>Copyright 2015 Justin Bennett</div>
 </body>
 
 
