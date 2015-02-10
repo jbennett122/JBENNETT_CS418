@@ -60,7 +60,38 @@
 <!-- user validation logic...soon-->
 <?php
 
+//database connection variables
+$db_host='localhost';
+$db_user='admin';
+$db_pass='5pR1nG2OlS';
+$db_name='cs418';
 
+
+//database connection status
+if ($dbc = @mysql_connect($db_host,$db_user,$db_pass) ){
+
+print '<p style="color:red;">hey it works database!<p>';
+
+if (@mysql_select_db($db_name,$dbc)){
+
+print '<p style="color:red;">database selected!<p>';
+}
+
+else{
+
+print '<p style="color:red;">Could Not Select DB because:</br>'
+			. mysql_error() . '</p>';
+
+}
+mysql_close($dbc);
+
+}
+else{ 
+
+print '<p style="color:red;">Could Not Connect To DB because:</br>'
+			. mysql_error() . '</p>';
+
+}
 
 
  

@@ -44,11 +44,15 @@
 
 
  
-<form style="border:solid black 4px; width:175px;position:relative;color:black;" action="index.php" method="post" >
+<form style="border:solid black 4px; width:175px;position:relative;color:black;" action="login.php" method="post" >
+
 <center><p style="color:black;"><strong>User Login</strong></p></center>
- &nbsp <label for="username" >Username</label> <center><input type="username" id="usename" name="username"></center><br /> 
-&nbsp <label for="password">Password:</label> <center><input type="password" id="password" name="password"></center><br /><br />
-  <center> <button type = "submit">Login</button> </center>
+ 
+ &nbsp <label for="username" >Username:</label> <center><input type="username" id="username" name="username"></center><br /> 
+
+ &nbsp <label for="password">Password:</label> <center><input type="password" id="password" name="password"></center><br /><br />
+ 
+ <center> <button type = "submit">Login</button> </center>
   
   
 
@@ -56,13 +60,22 @@
 </form>
 
 
-<!-- user validation logic...soon-->
+<!-- user validation logic-->
 <?php
+require('login.php');
+//print '<p style="color:red;">hey it works database!<p>';
 
+if($_SESSION['loggedIn'] == 'true'){
 
+print '<p style="color:red;">logged in<p>';
+}
 
+else{
+print '<p style="color:red;">false<p>';}
+//$query= 'SELECT * FROM user;';
 
  
+
  ?>
 
 </div>
@@ -71,7 +84,7 @@
 <div class="content2"  >
 
 <center>
-<form  action="process-form-data.php" method="post" >
+<form  action="askquestion.php" method="post" >
 
  <fieldset>
  <center><p style="text-align:left;">
