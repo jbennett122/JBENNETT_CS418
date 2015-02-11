@@ -107,7 +107,6 @@ print "<p>{$row['user_name']}</br>
 		{$row['id']}</br>";
 }*/
 
-require('submitanswer.php');
  
  ?>
 
