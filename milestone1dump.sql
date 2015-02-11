@@ -25,6 +25,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `answers`
 --
+CREATE DATABASE IF NOT EXISTS `cs418` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `cs418`;
 
 CREATE TABLE IF NOT EXISTS `answers` (
   `q_id` int(100) NOT NULL,
