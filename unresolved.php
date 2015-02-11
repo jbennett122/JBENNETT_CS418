@@ -67,39 +67,13 @@
 
 <center>
 
-<form>
+<form   action="submitanswer.php" method="post">
 <?php
 
  require('retrievequestions.php');
-
-
-
  
- ?></form>
-<!--<form  action="process-form-data.php" method="post" >
-
- <fieldset>
- <center><p>Question </p></center>
- 
-  <br />
-</fieldset>
-
-
-
-<fieldset>
-
-</fieldset>
-
-<fieldset>
-
-<textarea name="answer" rows="3" cols="30" >Answer this question</textarea>
-</br> </br>
-<input type="submit" name="submit" value="Submit me" /> &nbsp
-<input type="reset" value="Reset" />
-
-</fieldset>
-
-</form>-->
+ ?>
+ </form>
 		</center>
 
 	<center><p>Text <a href="data.txt">data</a> from form</p></center>
