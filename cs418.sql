@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2015 at 06:35 PM
+-- Generation Time: Feb 11, 2015 at 04:50 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -32,9 +32,16 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `answer_text` text NOT NULL,
   `answerer_id` int(100) NOT NULL,
   `date` date NOT NULL,
-  `up_vote` int(11) NOT NULL,
-  `down_vote` int(11) NOT NULL
+  `up_vote` int(11) DEFAULT NULL,
+  `down_vote` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`q_id`, `answer_num`, `answer_text`, `answerer_id`, `date`, `up_vote`, `down_vote`) VALUES
+(1, 1, 'the door is over there', 3, '2015-02-10', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -44,10 +51,26 @@ CREATE TABLE IF NOT EXISTS `answers` (
 
 CREATE TABLE IF NOT EXISTS `questions` (
 `q_id` int(100) NOT NULL,
+  `question_title` text NOT NULL,
   `question_text` text NOT NULL,
   `date` date NOT NULL,
-  `asker_id` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `asker_id` int(100) NOT NULL,
+  `resolved` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`q_id`, `question_title`, `question_text`, `date`, `asker_id`, `resolved`) VALUES
+(1, 'where am i?', 'I cant find my way out', '2015-02-09', 3, 0),
+(2, 'where am i?', 'i cant find my way out of here', '2015-02-10', 2, 0),
+(3, 'Afff', 'ffff', '2015-02-10', 3, 0),
+(4, 'Ok but there so much more to do.', 'how am I doing?', '2015-02-10', 3, 0),
+(5, 'hopefully it is', 'IS this better?', '2015-02-10', 3, 0),
+(6, '?', '!', '2015-02-10', 3, 0),
+(7, 'nope?', 'yes!', '2015-02-10', 3, 0),
+(8, 'Am I done?', 'When will this semester be over?', '2015-02-10', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -96,7 +119,7 @@ ALTER TABLE `answers`
 -- Indexes for table `questions`
 --
 ALTER TABLE `questions`
- ADD PRIMARY KEY (`q_id`), ADD UNIQUE KEY `q_id` (`q_id`);
+ ADD PRIMARY KEY (`q_id`,`asker_id`), ADD UNIQUE KEY `q_id` (`q_id`), ADD KEY `asker_id` (`asker_id`);
 
 --
 -- Indexes for table `user`
@@ -112,7 +135,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-MODIFY `q_id` int(100) NOT NULL AUTO_INCREMENT;
+MODIFY `q_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -127,6 +150,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 ALTER TABLE `answers`
 ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`q_id`) REFERENCES `questions` (`q_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `questions`
+--
+ALTER TABLE `questions`
+ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`asker_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
