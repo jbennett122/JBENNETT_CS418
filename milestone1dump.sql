@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2015 at 03:03 PM
+-- Generation Time: Feb 11, 2015 at 04:11 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `date` date NOT NULL,
   `asker_id` int(100) NOT NULL,
   `resolved` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `questions`
@@ -72,7 +72,8 @@ INSERT INTO `questions` (`q_id`, `question_title`, `question_text`, `date`, `ask
 (6, '?', '!', '2015-02-10', 3, 0),
 (7, 'nope?', 'yes!', '2015-02-10', 3, 0),
 (8, 'Am I done?', 'When will this semester be over?', '2015-02-10', 3, 0),
-(9, 'New user?', 'is the session user changed?', '2015-02-11', 1, 0);
+(9, 'New user?', 'is the session user changed?', '2015-02-11', 1, 0),
+(10, 'Hey everyone!', 'What is your names?', '2015-02-11', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-MODIFY `q_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `q_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `user`
 --
