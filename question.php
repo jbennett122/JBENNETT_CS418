@@ -62,19 +62,10 @@
 
 <!-- user validation logic-->
 <?php
-require('login.php');
-//print '<p style="color:red;">hey it works database!<p>';
 
-if($_SESSION['loggedIn'] == 'true'){
+session_start();
 
-print '<p style="color:red;">logged in<p>';
-}
-
-else{
-print '<p style="color:red;">false<p>';}
-//$query= 'SELECT * FROM user;';
-
- 
+echo "session user name is " . $_SESSION['user_name']."</br>";
 
  ?>
 
@@ -87,18 +78,19 @@ print '<p style="color:red;">false<p>';}
 <form  action="askquestion.php" method="post" >
 
  <fieldset>
+
  <center><p style="text-align:left;">
- &nbsp  Question Title<input type="text" name="question" size="40" /></p></center>
+ &nbsp  Question Title<input type="text" name="title" size="40" /></p></center>
  
   <br />
 </fieldset>
 
-
-
 <fieldset>
 
-<textarea name="comments" rows="3" cols="30" >Ask your question</textarea>
+<textarea name="question" rows="3" cols="30" >Ask your question</textarea>
+
 </br> </br>
+
 <input type="submit" name="submit" value="Submit me" /> &nbsp
 <input type="reset" value="Reset" />
 

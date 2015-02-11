@@ -1,7 +1,5 @@
 <?php
 
-
 print 'failure';
-
-
+ 
 ?>

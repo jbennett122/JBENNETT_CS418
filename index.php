@@ -45,11 +45,13 @@
 
 
  
-<form style="border:solid black 4px; width:175px;position:relative;color:black;" action="index.php" method="post" >
+<form style="border:solid black 4px; width:175px;position:relative;color:black;" action="login.php" method="post" >
 <center><p style="color:black;"><strong>User Login</strong></p></center>
- &nbsp <label for="username" >Username</label> <center><input type="username" id="usename" name="username"></center><br /> 
+ &nbsp <label for="username" >Username</label> <center><input type="username" id="usename" name="username"></center><br />
+ 
 &nbsp <label for="password">Password:</label> <center><input type="password" id="password" name="password"></center><br /><br />
-  <center> <button type = "submit">Login</button> </center>
+ 
+ <center> <button type = "submit">Login</button> </center>
   
   
 
@@ -57,9 +59,9 @@
 </form>
 
 
-<!-- user validation logic...soon-->
+<!-- test php-->
 <?php
-
+/*
 //database connection variables
 $db_host='localhost';
 $db_user='admin';
@@ -92,6 +94,18 @@ print '<p style="color:red;">Could Not Connect To DB because:</br>'
 			. mysql_error() . '</p>';
 
 }
+
+require('connection.php');
+
+$query= 'Select * from user Where user_name ="bourne";';
+
+$results = mysql_query($query,$dbc);
+
+while($row = mysql_fetch_array($results))
+{
+print "<p>{$row['user_name']}</br>
+		{$row['id']}</br>";
+}*/
 
 
  

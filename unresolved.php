@@ -58,13 +58,7 @@
 
 
 <!-- user validation logic...soon-->
-<?php
 
-
-
-
- 
- ?>
 
 </div>
  </div>
@@ -72,7 +66,17 @@
 <div class="content2"  >
 
 <center>
-<form  action="process-form-data.php" method="post" >
+
+<form>
+<?php
+
+ require('retrievequestions.php');
+
+
+
+ 
+ ?></form>
+<!--<form  action="process-form-data.php" method="post" >
 
  <fieldset>
  <center><p>Question </p></center>
@@ -84,14 +88,6 @@
 
 <fieldset>
 
-<p>Answer 1</p>
-</br>
-<p>Answer 2</p>
-</br>
-<p>Answer 3</p>
-</br>
-<p>Answer 4</p>
-</br>
 </fieldset>
 
 <fieldset>
@@ -103,7 +99,7 @@
 
 </fieldset>
 
-</form>
+</form>-->
 		</center>
 
 	<center><p>Text <a href="data.txt">data</a> from form</p></center>
