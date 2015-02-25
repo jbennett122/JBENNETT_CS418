@@ -12,7 +12,7 @@ $user=$_SESSION['user_name'];
 //need to change query to SELECT id from user where....
 $mysql = "Select * from user where user_name = '$user';";
 
-$result = mysql_query($mysql)or die($mysql."<br/><br/>".mysql_error());
+$result = @mysql_query($mysql)or die($mysql."<br/><br/>".mysql_error());
 
 //results of user name query
 $row = mysql_fetch_array($result);
@@ -30,12 +30,5 @@ else{
 header("Location: loginFailed.php");
 
 }
-/*
-while($row = mysql_fetch_array($result))
-{
-print "<p>{$row['user_name']}</br>
-		{$row['id']}</br>";}
-//$sql= "INSERT into questions 
-*/
-
+ 
 ?>

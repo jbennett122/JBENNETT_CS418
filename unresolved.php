@@ -16,8 +16,6 @@
 
 </head>
 <body >
-
-
 <div id="header"><h1><em>Ask me a question?</em></h1></div>
 
 <div class="left">
@@ -67,30 +65,24 @@
 
 <center>
 
-<form   action="submitanswer.php" method="post">
+<form   >
 <?php
 
  require('retrievequestions.php');
- 
+
  ?>
  </form>
 		</center>
 
 	<center><p>Text <a href="data.txt">data</a> from form</p></center>
 	
-<?php
-	   
  
-		
-?>	
 </div>
 </div>
 
 
 <div class="footer"> <h6>Copyright 2015 Justin Bennett</div>
 </body>
-
-
 
 </html>
 
