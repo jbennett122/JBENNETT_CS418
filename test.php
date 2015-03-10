@@ -33,10 +33,10 @@ $c3++;
 
 //insert into table using data from session username and id from query //{$row['answer_num']}
 if($test['answer_num']==''){
-$submitanswer = "INSERT INTO answers (q_id,answer_num,answer_text,answerer_id,date,up_vote, down_vote,selected) VALUES ('$q_id','1','$answer','{$row['id']}',NOW(),'0','0','false');";
+$submitanswer = "INSERT INTO answers (q_id,answer_num,answer_text,answerer_id,date,votes,selected) VALUES ('$q_id','1','$answer','{$row['id']}',NOW(),'0','false');";
  }
  else{
- $submitanswer = "INSERT INTO answers (q_id,answer_num,answer_text,answerer_id,date,up_vote, down_vote,selected) VALUES ('$q_id','$c3','$answer','{$row['id']}',NOW(),'0','0','false');";
+ $submitanswer = "INSERT INTO answers (q_id,answer_num,answer_text,answerer_id,date,votes,selected) VALUES ('$q_id','$c3','$answer','{$row['id']}',NOW(),'0','false');";
  }
 
 $r1= mysql_query($submitanswer)or die($mysql."<br/><br/>".mysql_error());

@@ -10,10 +10,8 @@ $sql = "Select * FROM user join questions where user.id = questions.asker_id;";
 
 $results = mysql_query($sql)or die($mysql."<br/><br/>".mysql_error());
 
-
-
-//$row = mysql_fetch_array($results);
-//for collapsable divs http://jsfiddle.net/eJX8z/
+ 
+//for collapsable divs http://jsfiddle.net/ eJX8z/
 while($row = mysql_fetch_array($results))
 {
 print $row['q_id'];
@@ -27,10 +25,9 @@ print "
 	</center>
 		 
 </fieldset>";
+$asker=$row['user_name'];
 
-
- //include 'submitanswer.php';
-
+  
 //answer form 
 print "</br>
 <form action='test.php' method='post'> 
@@ -43,31 +40,119 @@ print "</br>
 <input type='reset' value='Reset' />
 </form>";
 
-
 $answerdata="SELECT * FROM answers WHERE q_id = '{$row['q_id']}';";
-$aresults = mysql_query($answerdata)or die($mysql."<br/><br/>".mysql_error());
+$ans_results = mysql_query($answerdata)or die($mysql."<br/><br/>".mysql_error());
 
-while($test = mysql_fetch_array($aresults)){
+while($ans = mysql_fetch_array($ans_results)){
+
+$sql2 = "Select * FROM user;";
+$results2 = mysql_query($sql2)or die($mysql."<br/><br/>".mysql_error());
+$row2 = mysql_fetch_array($results);
+$name=$row2['user_name'];
+$question=$row2['question_title'];
+
 //previous answers
-$r=$row['q_id'];
-$t=$test['answer_num'];
-$a=$test['answerer_id'];
-Print "<form  method='post' action='selectanswer.php'><fieldset>
-<input type='submit' value='Choose This Answer' >$r $t </br>{$test['answer_text']}
-<input type='hidden' name='question' value='$r'>
-<input type='hidden' name='answer' value='$t'>
-<input type='hidden' name='answerer_id' value='$a'>
-</fieldset></form> ";
+$question_id=$row['q_id'];
+$answer_num=$ans['answer_num'];
+$answerer_id=$ans['answerer_id'];
+$selected=$ans['selected'];
 
+if($selected==1){
 
+Print "
+<form  method='post' action='selectanswer.php'>
+<fieldset id='$question'>
 
-}
+<!--$question_id $answer_num-->
+<div>
+<p style='float:left; font-weight: bold;'>&nbsp $answer_num answered by $name</p>
+</div>
+</br> 
+</br>
+</br> 
 
-//include('displayanswers.php');
-
-}
-
+<div class='buttonbox'>
  
+<button class='btn' onclick='asynchronouslyUpdate('increment');'><strong>?</strong></button></br>
+<button class='btn' onclick='asynchronouslyUpdate('decrement');'><strong>¿</strong></button></br>
+</div> </br>
+
+<div class='ansbox'>
+</br>{$ans['answer_text']} 
+<input type='hidden' name='question' value='$question_id'>
+<input type='hidden' name='answer_num' value='$answer_num'>
+<input type='hidden' name='answerer_id' value='$answerer_id'>
+<input type='hidden' name='asker' value='$asker'>
+</div>
+</br>
+
+</br>
+<strong> SELECTED </strong>
+
+</fieldset></form> ";
+}
+else {
+Print "<form  method='post' action='selectanswer.php'>
+
+<fieldset id='$question'>
+
+
+<div>
+<p style='float:left; font-weight: bold;'>&nbsp $answer_num answered by $name</p>
+</div>
+</br> 
+</br>
+ 
+<!--$question_id $answer_num--></br>
+<div class='buttonbox'> 
+<button class='btn' onclick='asynchronouslyUpdate('increment',$question);'><strong>?</strong></button></br>
+<button class='btn' onclick='asynchronouslyUpdate('decrement',$question);'><strong>¿</strong></button></br>
+</div>
+
+ </br> 
+ 
+ 
+<div class='ansbox'>
+{$ans['answer_text']}</br>
+
+<input type='hidden' name='question' value='$question_id'>
+<input type='hidden' name='answer_num' value='$answer_num'>
+<input type='hidden' name='answerer_id' value='$answerer_id'>
+<input type='hidden' name='asker' value='$asker'>
+</br>
+<input type='submit' value='Choose This Answer' >
+</div>
+</fieldset></form> ";
+}
+
+}
+
+}
+
+echo "</br><script>
+
+/*global $:false */
+function asynchronouslyUpdate(change,question){
+  $.ajax({
+      url: \"vote.php\",
+      data: {action: change, question: question},
+      success: function(response){
+        $(\"#myText\").html(response);
+      },
+      error: function(err) {
+        console.log(\"Error\");
+        console.log(err);
+      }
+  });
+}
+ 
+$(document).ready(function(){
+  $(\"#id\").ready(function(){asynchronouslyUpdate(\"post\");});
+  $(\"#source\").hide();
+  $(\"#showSource\").click(showSource);
+});
+
+</script>";
 		
 ?>
 

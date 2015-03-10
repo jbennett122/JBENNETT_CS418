@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset-utf-8"/>
 
+		<script src="../test/jquery-1.11.2.js"></script>
+		 
 <!--CSS info-->
 
 		<link rel="stylesheet" type="text/css" href="values.css"/>

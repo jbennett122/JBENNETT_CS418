@@ -1,12 +1,12 @@
 
 
 <?php
-
- SESSION_start();
+SESSION_start();
 require('connection.php');
 
+$asker=$_POST['asker'];
 $q_id=$_POST['question'];
-$a_id=$_POST['answer'];
+$a_id=$_POST['answer_num'];
 $answerer_id=$_POST['answerer_id'];
 $user=$_SESSION['user_name'];
 $selected = false;
@@ -14,7 +14,7 @@ $can_be_selected = true;
 $updated=false;
 $same=false;
 
-echo "hi question id: $q_id answer number: $a_id";
+echo "question asker: $asker question id: $q_id answer number: $a_id" ;
 
 //find if a answer has been selected query
 $sql = "SELECT * from answers where q_id='$q_id';";
@@ -23,15 +23,14 @@ $results = mysql_query($sql);
 
 //go thru results looking to see if an answer has been selected
 while($found= mysql_fetch_array($results)){
-$a_id = $found['answerer_id'];
-
-$test=$found['selected'];
+$a_id=$found['answer_num']; //current answer number to selected question
+$test=$found['selected']; //1 if answer has been selected 0 if not
 
 //if a answer has been selected, no more answers can be selected
 if($test=='1'){
 
-print "found one</br>";
-echo "one indicates selected: $test</br>";
+echo "</br>one indicates an answer has been selected: $test</br>";
+
 $can_be_selected = false;
 
 }
@@ -45,29 +44,41 @@ $sql = "Select * FROM user join questions where user.id = questions.asker_id;";
 
 $results = mysql_query($sql)or die($mysql."<br/><br/>".mysql_error());
  
+//checks to see if person who asked the question is choosing
+//--------------------todo-----------------------------------
+//forbid anyone else from choosing best with another boolean 
+//put the boolean into the selection boolean 
+if($asker==$user){
 
-if($results['id']==$results['asker_id']){
-
-echo "yes";
-
-}
+echo "</br>asker $asker and $user the same";
 
 
-echo "answer number $a_id";
+
+
+echo "</br>answer number $a_id";
+
+//booleans to see if an answer has been selected
 if(!$selected&&$can_be_selected){
 $update= "UPDATE answers SET selected ='1' where q_id='$q_id' and answer_num='$a_id';";
 $results= mysql_query($update);
 $updated=true;
-
+print "</br>test";
 }
-//else print "already selected best answer";
-
-/*
-if($updated){
-header("Location:unresolved.php");
+else print "</br>already selected best answer";
 }
+
+
+
 else{
-header("Location: loginFailed.php");
+
+echo "</br>asker $asker and $user not the same";
+
+
 }
-*/
+  
+ 
+header("Location:unresolved.php");
+ 
+ 
+  
 ?>
