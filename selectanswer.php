@@ -77,7 +77,7 @@ echo "</br>asker $asker and $user not the same";
 }
   
  
-header("Location:unresolved.php");
+header("Location:inquiries.php");
  
  
   

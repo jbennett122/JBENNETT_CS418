@@ -28,8 +28,8 @@
 								
 										<a href="index.php">Home</a><br>
 										<a href="question.php">Ask a question</a><br>
-										<a href="unresolved.php">Unresolved Questions</a><br>
-										<a href="resolved.php">Resolved Questions</a><br>
+										<a href="inquiries.php">Inquiries</a><br>
+										 <a href="profile.php">Profile Page</a><br>
 										
 
 
@@ -53,11 +53,24 @@
  
  <center> <button type = "submit">Login</button> </center>
   
-  
+<center>  <p>Not a member? <a href="register.php">Register</a></p></center>
 
 
 </form>
+<?php
 
+session_start();
+
+if (!(isset($_SESSION['user_name']) && $_SESSION['user_name'] != '')){
+
+echo "<center><p>Please log in</p></center>";
+}
+
+else{
+
+	echo "<center><p>Logged in: " . $_SESSION['user_name']."</br></p></center>";
+}
+ ?>
 
 <!-- test php-->
 <?php
@@ -113,7 +126,7 @@ print "<p>{$row['user_name']}</br>
 </div>
  </div>
 <div class="rightc" >
-<div class="content2"  >
+<div class="content"  >
 <div ><center> <img class="img" src="questionMark.jpg" alt="?" ></div></center> 
 <center>
 <!--<form  action="process-form-data.php" method="post" >-->
@@ -122,15 +135,13 @@ print "<p>{$row['user_name']}</br>
 
 
 		</center>
+<form action="logout.php"  method="post">
 
-	<center><p>Text <a href="data.txt">data</a> from form</p></center>
-	
-<?php
-	   
+<input type="submit" value="logout">
+
+</form>
+	 
  
- Print "<i>Php works too</i>"; 
-		
-?>	
 </div>
 </div>
 

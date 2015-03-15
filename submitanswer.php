@@ -1,8 +1,17 @@
 <?php
 $user=$_SESSION['user_name'];
- 
+if($user==""){
 
- print "<form action='test.php' method='post'>  </form>";
+print "please log in to answer or vote";
+}
+
+
+else {
+
+
+print "<form action='test.php' method='post'>  </form>";
+
+}
 
  
 

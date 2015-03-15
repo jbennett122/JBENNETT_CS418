@@ -34,52 +34,56 @@
 										 
 										 
 
+
 <br>
 <br>
 										<a href="mailto:jbenn032@odu.edu">jbennett@cs.odu.edu</a>
-		
+
 <br /><br /><br><br /><br /><br /><br /><br /><br /></br>
 <div ><center> <img class="img2" src="questionMark.jpg" alt="?" ></div></center> 
 
-<!-- user validation logic-->
 
 
 </div>
  </div>
 <div class="rightc" >
-<div class="content"  >
-
-<center>
-<form  action="askquestion.php" method="post" >
-
+<div class="content">
  <fieldset>
-
- <center><p style="text-align:left;">
- &nbsp  Question Title<input type="text" name="title" size="40" /></p></center>
+  <form enctype="multipart/form-data" action="newuserinsert.php" method="post">
  
-  <br />
+ <center><h3>User Registration</h3></center>
+ <center><p>Username <input type="text" name="user_name"></p></center>
+<center><p>Password <input type="password" name="password"></p></center>
+  <br></br>
+ 
+ 	<input name="MAX_FILE_SIZE" value="3000000" type="hidden">
+	<center><h3>Select Avatar</h3></center>
+	<center><p> <input name="image" type="file"></p></center>
+	 
+<input type="hidden" value="altText" name="altText" id="altText"/><br />
+	<input name="tmp_name" type="hidden">
+	<center><input value="Register" type="submit"></center>
 </fieldset>
-
-<fieldset>
-
-<textarea name="question" rows="3" cols="30" >Ask your question</textarea>
-
-</br> </br>
-
-<input type="submit" name="submit" value="Submit me" /> &nbsp
-<input type="reset" value="Reset" />
-
-</fieldset>
+ </form>
+ 
+ 
+  <?php
+session_start();
+if($_SESSION["check"]==true){
+echo "Try another user name";
+}
 
 
-</form>
-		</center>
-
-	<center><p>Text <a href="data.txt">data</a> from form</p></center>
-	
+ 
+ ?>
+ 
+ 
+ 
+ 
+ </div>	
 <?php
 	   
-  
+ 
 		
 ?>	
 </div>

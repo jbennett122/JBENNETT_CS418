@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset-utf-8"/>
 
+		<script src="../test/jquery-1.11.2.js"></script>
+		 
 <!--CSS info-->
 
 		<link rel="stylesheet" type="text/css" href="values.css"/>
@@ -16,8 +18,6 @@
 
 </head>
 <body >
-
-
 <div id="header"><h1><em>Ask me a question?</em></h1></div>
 
 <div class="left">
@@ -34,62 +34,45 @@
 										 
 										 
 
+
 <br>
 <br>
 										<a href="mailto:jbenn032@odu.edu">jbennett@cs.odu.edu</a>
-		
-<br /><br /><br><br /><br /><br /><br /><br /><br /></br>
+<br>														
+<br /><br /><br><br /><br /><br /><br /><br /><br />
+
+
+
 <div ><center> <img class="img2" src="questionMark.jpg" alt="?" ></div></center> 
 
-<!-- user validation logic-->
+<!-- user validation logic...soon-->
 
 
 </div>
  </div>
 <div class="rightc" >
-<div class="content"  >
+<div class="content2"  >
 
 <center>
-<form  action="askquestion.php" method="post" >
 
- <fieldset>
+<form  >
+<?php
 
- <center><p style="text-align:left;">
- &nbsp  Question Title<input type="text" name="title" size="40" /></p></center>
- 
-  <br />
-</fieldset>
+ require('retrievequestions.php');
 
-<fieldset>
-
-<textarea name="question" rows="3" cols="30" >Ask your question</textarea>
-
-</br> </br>
-
-<input type="submit" name="submit" value="Submit me" /> &nbsp
-<input type="reset" value="Reset" />
-
-</fieldset>
-
-
-</form>
+ ?>
+ </form>
 		</center>
 
-	<center><p>Text <a href="data.txt">data</a> from form</p></center>
+ 
 	
-<?php
-	   
-  
-		
-?>	
+ 
 </div>
 </div>
 
 
 <div class="footer"> <h6>Copyright 2015 Justin Bennett</div>
 </body>
-
-
 
 </html>
 
