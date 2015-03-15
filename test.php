@@ -43,7 +43,7 @@ $r1= mysql_query($submitanswer)or die($mysql."<br/><br/>".mysql_error());
  
  
  if($r1){
-header("Location:unresolved.php");
+header("Location:inquiries.php");
 
 }
 else{

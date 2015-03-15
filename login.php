@@ -3,6 +3,7 @@ session_start();
 //php script containing the connection
 require('connection.php');
 
+
 //data from form
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -19,11 +20,11 @@ $count = 0;
 $count = mysql_num_rows($result);
  
 if($count == 1){
-	$_SESSION['loggedIn'] = "true";
-	header("Location:question.php");
+	$_SESSION['loggedIn'] = true;
+	header("Location:index.php");
 	 }
 	else {
-     $_SESSION['loggedIn'] = "false";
+     $_SESSION['loggedIn'] = false;
      header("Location: loginFailed.php");
 	 }
 	
