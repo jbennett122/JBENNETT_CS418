@@ -5,6 +5,28 @@ SESSION_start();
 require('connection.php');
 
 require('submitanswer.php');
+
+
+
+
+print "
+<script>
+function getVote(int) {
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById('poll').innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open('GET','vote.php?vote='+int,true);
+  xmlhttp.send();
+}
+</script>";
  
 $sql = "Select * FROM user join questions where user.id = questions.asker_id;";
 
@@ -12,7 +34,7 @@ $results = mysql_query($sql)or die($results."<br/><br/>".mysql_error());
 
 while($row = mysql_fetch_array($results))
 { 
-print " 
+print " </br>
 <fieldset >
  <center>
 	<p><h3>Question : 
@@ -26,7 +48,7 @@ $asker=$row['user_name'];
 
   
 //answer form 
-print "</br>
+print " 
 <form action='test.php' method='post'> 
 <textarea name='answer' rows='3' cols='30' >Answer this question</textarea>
 <input type='hidden' name='q_id' value='{$row['q_id']}'/>
@@ -82,8 +104,12 @@ Print "
 </br></br></br> 
 
 <div class='buttonbox'>
-<button class='btn' onclick='asynchronouslyUpdate('increment');'><strong>?</strong></button></br>
-<button class='btn' onclick='asynchronouslyUpdate('decrement');'><strong>¿</strong></button></br>
+<button class='btn' value='1' onclick=getVote(this.value);'><strong>?</strong></button></br>
+<button class='btn' onclick='asynchronouslyUpdate('decrement',$question);'><strong>¿</strong></button></br>
+
+getVote(int,question)
+
+<p id='myText'>working?</p>
 </div> </br>
 
 <div class='ansbox'>
@@ -118,6 +144,8 @@ Print "<form  method='post' action='selectanswer.php'>
 <div class='buttonbox'> 
 <button class='btn' onclick='asynchronouslyUpdate('increment',$question);'><strong>?</strong></button></br>
 <button class='btn' onclick='asynchronouslyUpdate('decrement',$question);'><strong>¿</strong></button></br>
+
+<p id='myText'>working?</p>
 </div>
 
  </br> 
@@ -141,31 +169,7 @@ Print "<form  method='post' action='selectanswer.php'>
 
 }
 
-echo "</br>
-<script>
 
-/*global $:false */
-function asynchronouslyUpdate(change,question){
-  $.ajax({
-      url: 'vote.php',
-      data: {action: change, question: question},
-      success: function(response){
-        $('#myText').html(response);
-      },
-      error: function(err) {
-        console.log('Error');
-        console.log(err);
-      }
-  });
-}
- 
-$(document).ready(function(){
-  $('#id').ready(function(){asynchronouslyUpdate('post','NULL');});
-  $('#source').hide();
-  $('#showSource').click(showSource);
-});
 
-</script>";
-		 
 ?>
 

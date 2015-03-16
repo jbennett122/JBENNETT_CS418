@@ -1,19 +1,8 @@
-<html>
 
-<body>
-<h1>Uploading Images to MySQL</h1><p>
 <?php
 if ( !isset($_FILES['image']['type']) ) {
    die('<p>No image submitted</p></body></html>');
 }
-?>
-You submitted this file:<br /><br />
-Temporary name: <?php echo $_FILES['image']['tmp_name'] ?><br />
-Original name: <?php echo $_FILES['image']['name'] ?><br />
-Size: <?php echo $_FILES['image']['size'] ?> bytes<br />
-Type: <?php echo $_FILES['image']['type'] ?></p>
-
-<?php
 
 SESSION_start();
 require('connection.php');
@@ -57,6 +46,3 @@ else {
    
 }
 ?>
-</body>
- 
- </html>
